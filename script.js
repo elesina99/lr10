@@ -12,13 +12,13 @@ let userName = "";
 
 window.onload = () => {
   do {
-    userName = prompt("Р’РІРµРґС–С‚СЊ РІР°С€Рµ С–РјвЂ™СЏ:");
+    userName = prompt("Введіть ваше ім’я:");
     if (userName === null) {
-      alert("Р’РІРµРґС–С‚СЊ С–РјвЂ™СЏ, С‰РѕР± РїРѕС‡Р°С‚Рё РіСЂСѓ!");
+      alert("Введіть ім’я, щоб почати гру!");
     } else {
       userName = userName.trim(); 
       if (userName === "") {
-        alert("РќРµ РјРѕР¶Рµ Р±СѓС‚Рё РїРѕСЂРѕР¶РЅС–Рј!");
+        alert("Не може бути порожнім!");
       }
     }
   } while (!userName);
@@ -27,8 +27,8 @@ window.onload = () => {
   const attemptText = document.getElementById("attemptText");
   const message = document.getElementById("message");
 
-  message.textContent = `Р“СЂР°РІРµС†СЊ: ${userName}`;
-  attemptText.textContent = `РЎРїСЂРѕР±Р° ${attempt} Р· ${maxAttempts}`;
+  message.textContent = `Гравець: ${userName}`;
+  attemptText.textContent = `Спроба ${attempt} з ${maxAttempts}`;
 
   btn.addEventListener("click", generateSlots);
 
@@ -75,22 +75,30 @@ window.onload = () => {
     }
 
     if (win) {
-      message.textContent = `Р’С–С‚Р°СЋ, ${userName}! Р’Рё РІРёРіСЂР°Р»Рё!`;
+      message.textContent = `Вітаю, ${userName}! Ви виграли!`;
       btn.disabled = true;
       btn.style.backgroundColor = "gray";
     } else if (attempt < maxAttempts - 1) { 
       attempt++;
-      attemptText.textContent = `РЎРїСЂРѕР±Р° ${attempt} Р· ${maxAttempts}`;
-      message.textContent = `РќР° Р¶Р°Р»СЊ, ${userName}, СЃРїСЂРѕР±СѓР№С‚Рµ С‰Рµ СЂР°Р·.`;
+      attemptText.textContent = `Спроба ${attempt} з ${maxAttempts}`;
+      message.textContent = `На жаль, ${userName}, спробуйте ще раз.`;
     } else {
       attempt = maxAttempts;
-      attemptText.textContent = `РЎРїСЂРѕР±Р° ${attempt} Р· ${maxAttempts}`;
-      message.textContent = `${userName}, СЃРїСЂРѕР±Рё Р·Р°РєС–РЅС‡РёР»РёСЃСЊ. Р’Рё РїСЂРѕРіСЂР°Р»Рё.`;
+      attemptText.textContent = `Спроба ${attempt} з ${maxAttempts}`;
+      message.textContent = `${userName}, спроби закінчились. Ви програли.`;
       btn.disabled = true;
       btn.style.backgroundColor = "gray";
     }
   }
 };
+
+
+
+
+
+
+
+
 
 
 
